@@ -2,6 +2,7 @@
   "name": "classMeetup",
   "version": "0.0.1",
   "private": true,
+  "homepage": "http://lakeblack.github.io/classMeetup",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
