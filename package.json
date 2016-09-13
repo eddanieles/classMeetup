@@ -2,10 +2,12 @@
   "name": "classMeetup",
   "version": "0.0.1",
   "private": true,
+  "homepage": "http://lakeblack.github.io/classMeetup",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "axios": "^0.14.0",
     "re-base": "^2.1.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
