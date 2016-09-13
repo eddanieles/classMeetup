@@ -3,7 +3,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from '../components/App';
 import Home from '../components/home';
 import Details from '../components/details';
-import Login from '../components/login';
+import Login from '../components/Login';
 
 
 const routes = (
