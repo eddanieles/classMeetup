@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import base from '../config/base'
 import axios from 'axios'
 
@@ -11,17 +11,13 @@ class Home extends Component {
     this.returnListings = this.returnListings.bind(this)
   }
 
-
-returnListings() {
-  axios.get("https://api.meetup.com/2/events?key=ABDE12456AB2324445&group_urlname=ny-tech&sign=true")
-  .then(function(response){
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-     }
-
+  returnListings() {
+    axios.get("https://api.meetup.com/2/open_events?zip=32801&text=tech&access_token=5fb405c39329096b4c7e4424fc555810").then(function(response) {
+      console.log(response);
+    }).catch(function(error) {
+      console.log(error);
+    })
+  }
 
   render() {
 
@@ -33,6 +29,5 @@ returnListings() {
     )
   }
 }
-
 
 export default Home;
