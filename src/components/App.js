@@ -3,6 +3,16 @@ import '../App.css';
 import {Link} from 'react-router'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      currentUser: ''
+    }
+    this.setUser = this.setUser.bind(this);
+  }
+  setUser(userFromLogin){
+    this.setState({currentUser: userFromLogin})
+  }
   render() {
     return (
       <div className="App">
@@ -23,7 +33,10 @@ class App extends Component {
 
       </div>
   </nav>
-        {this.props.children}
+      {React.cloneElement(this.props.children, {
+        currentUser: this.state.currentUser,
+        setUser: this.setUser
+      })}
       </div>
     );
   }

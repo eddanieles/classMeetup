@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
+    //let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
     this.setState({listings: fakeResponse.results});
   }
 
@@ -20,6 +20,7 @@ class Home extends Component {
     return (
       <div>
         <h1>This is the home page</h1>
+        <p>{this.props.currentUser}</p>
         <ul>{this.state.listings.map(listing => <li key={listing.id}>{listing.name}</li>)}</ul>
       </div>
 
