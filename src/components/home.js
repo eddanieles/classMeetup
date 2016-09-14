@@ -1,33 +1,30 @@
 import React, {Component} from 'react'
 import base from '../config/base'
-import axios from 'axios'
+import makeAuthenticatedRequest from '../config/api'
+import fakeResponse from '../mock/data'
 
 class Home extends Component {
- constructor(props) {
-   super(props);
-   this.state = {
-     listings: []
-   }
-   this.returnListings = this.returnListings.bind(this)
- }
+  constructor(props) {
+    super(props);
+    this.state = {
+      listings: []
+    }
+  }
 
- returnListings() {
-   axios.get("https://api.meetup.com/2/open_events?zip=32801&text=tech&access_token=5fb405c39329096b4c7e4424fc555810").then(function(response) {
-     console.log(response);
-   }).catch(function(error) {
-     console.log(error);
-   })
- }
+  componentDidMount() {
+    let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
+    this.setState({listings: fakeResponse.results});
+  }
 
- render() {
+  render() {
+    return (
+      <div>
+        <h1>This is the home page</h1>
+        <ul>{this.state.listings.map(listing => <li key={listing.id}>{listing.name}</li>)}</ul>
+      </div>
 
-   return (
-     <div>
-       {this.returnListings()}
-     </div>
-
-   )
- }
+    )
+  }
 }
 
 export default Home;
