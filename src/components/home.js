@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import base from '../config/base'
-import axios from 'axios'
+import makeAuthenticatedRequest from '../config/api'
 
 class Home extends Component {
   constructor(props) {
@@ -8,22 +8,18 @@ class Home extends Component {
     this.state = {
       listings: []
     }
-    this.returnListings = this.returnListings.bind(this)
   }
 
-  returnListings() {
-    axios.get("https://api.meetup.com/2/open_events?zip=32801&text=tech&access_token=5fb405c39329096b4c7e4424fc555810").then(function(response) {
-      console.log(response);
-    }).catch(function(error) {
-      console.log(error);
-    })
+  componentDidMount() {
+    let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
+    makeAuthenticatedRequest(accessToken).then(response => this.setState({listings: response}));
   }
 
   render() {
-
     return (
       <div>
-        {this.returnListings()}
+        <h1>This is the home page</h1>
+        <h2>{this.state.listings}</h2>
       </div>
 
     )
