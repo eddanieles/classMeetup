@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import CommentForm from './CommentForm'
+import Comment from './Comment'
 
 class CommentBox extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class CommentBox extends Component {
       author,
       body
     }
-    this.setState({ comments: this.state.comments.concat([comments]) })
+    this.setState({ comments: this.state.comments.concat([comment]) })
   }
 getComments() {
   return this.state.comments.map((comment) => {
@@ -26,10 +27,11 @@ getComments() {
   render() {
     return (
       <div className="comment-box">
+        <CommentForm addComment={this.addComment.bind(this)}/>
         <h3>Comments</h3>
         <h4></h4>
           <div className="commentList">
-            {comments}
+            {this.comments}
           </div>
       </div>
     )
