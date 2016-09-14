@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
+import Event from './Event'
 import base from '../config/base'
 import makeAuthenticatedRequest from '../config/api'
-import fakeResponse from '../mock/data'
 
 class Home extends Component {
   constructor(props) {
@@ -13,14 +13,16 @@ class Home extends Component {
 
   componentDidMount() {
     let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
-    this.setState({listings: fakeResponse.results});
+    makeAuthenticatedRequest(accessToken)
+    .then(response => this.setState({listings: response.data.results}))
   }
 
   render() {
+    let eventListings = this.state.listings.map(listing => <Event key={listing.id} info={listing}/>);
     return (
       <div>
         <h1>This is the home page</h1>
-        <ul>{this.state.listings.map(listing => <li key={listing.id}>{listing.name}</li>)}</ul>
+        <ul style={{listStyleType: "none"}}>{eventListings}</ul>
       </div>
 
     )
