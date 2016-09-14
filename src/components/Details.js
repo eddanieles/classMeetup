@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import CommentBox from './CommentBox'
+import api from '../config/api.js'
+
+
 
 class Details extends Component {
 
   render() {
     return (
       <div>
-        hello from details
+
+
         <CommentBox />
       </div>
 
