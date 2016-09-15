@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import App from '../components/App';
 import Home from '../components/Home';
-import Login from './Login';
+import Login from '../components/Login';
 import Details from '../components/Details';
 import HomeContainer from '../containers/HomeContainer';
 
