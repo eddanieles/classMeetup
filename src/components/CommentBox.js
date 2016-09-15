@@ -20,7 +20,7 @@ class CommentBox extends Component {
       body
 
     }
-    this.setState({ comments: this.state.comments.concat([comment]) })
+    this.setState({ comments: this.state.comments.concat(localStorage.user: [comment]) })
   }
 getComments() {
   console.log("am I here?")

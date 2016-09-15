@@ -7,15 +7,6 @@ import base from '../config/base.js'
 
 class Details extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {attendees: []},
-  this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick () {
-
-  }
-
   render() {
     console.log(this.props.clickedMeetup);
     return (
@@ -24,8 +15,7 @@ class Details extends Component {
           <p>{this.props.clickedMeetup.venue.address_1}</p>
           <p>{this.props.clickedMeetup.venue.city}</p>
           <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
-          <button type="submit"  className="btn btn-primary">RSVP</button>
-        <CommentBox />
+          
         <SimpleMap />
       </div>
 
