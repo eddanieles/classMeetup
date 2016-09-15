@@ -32,7 +32,6 @@ class App extends Component {
                       <li className="logout">
                           <Link to="/">Logout</Link>
                       </li>
-
                   </ul>
               </div>
           </div>
