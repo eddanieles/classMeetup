@@ -1,19 +1,21 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import App from '../components/App';
-import Home from '../components/home';
-import Details from '../components/details';
-import Login from '../components/login';
-import Dog from '../components/Dog';
+import Home from '../components/Home';
+import Login from '../components/Login';
+import Details from '../components/Details';
+import HomeContainer from '../containers/HomeContainer';
 
 
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Login}/>
-      <Route path="dog" component={Dog}/>
-      <Route path="home" component={Home}/>
-       <Route path="/details" component={Details}/>
+      <IndexRedirect to="/login" />
+      <Route path="login" component={Login}/>
+      <Route path="home" component={HomeContainer}>
+        <IndexRoute component={Home}/>
+        <Route path="Details" component={Details}/>
+      </Route>
     </Route>
   </Router>
 )

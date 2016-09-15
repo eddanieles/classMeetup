@@ -2,14 +2,9 @@ import axios from 'axios';
 
 
 function makeAuthenticatedRequest(accessToken) {
-  axios.get("https://api.meetup.com/2/open_events?zip=32801", {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      Origin: 'http://localhost:3000'
-    }
-  })
+  return axios.get(`https://api.meetup.com/2/open_events?category=34&zip=32801&access_token=${accessToken}`)
   .then(function(response) {
-    console.log(response);
+    return response;
   })
 
 }
