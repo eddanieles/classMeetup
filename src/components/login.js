@@ -6,7 +6,7 @@ class Login extends Component {
     super(props);
     this.state = {
       user: '',
-      UIDs: []
+      loginTimeStamps: []
     }
     this.handleClick = this.handleClick.bind(this);
     this.authHandler = this.authHandler.bind(this);
@@ -23,10 +23,15 @@ class Login extends Component {
       this.props.setUser(userData.user.displayName);
       console.log(userData.user.displayName);
       console.log(userData.user.uid);
-      let UIDArray = this.state.UIDs;
+      let UIDArray = this.state.loginTimeStamps;
+      let timeStamp = Date();
       this.setState({
         user: userData.user.displayName,
-        UIDs: UIDArray.concat([{user: userData.user.displayName, UID: userData.user.uid}])
+        loginTimeStamps: UIDArray.concat([
+          {user: userData.user.displayName,
+            timeStamp: timeStamp,
+            UID: userData.user.uid}
+        ])
       })
 
       window.location = "http://localhost:3000/home";
@@ -36,9 +41,9 @@ class Login extends Component {
     }
   }
   componentDidMount(){
-    this.rebaseRef = base.syncState('UIDs', {
+    this.rebaseRef = base.syncState('loginTimeStamps', {
       context: this,
-      state: 'UIDs',
+      state: 'loginTimeStamps',
       asArray: true
     })
   }
