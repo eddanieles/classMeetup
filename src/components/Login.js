@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import base from '../config/base'
 
 class Login extends Component {
@@ -14,22 +14,23 @@ class Login extends Component {
      // OAuth popup. Also, takes in an Auth provider and handler
 
   }
-
   authHandler(err, user) {
-      console.log("does this work");
-
-      this.props.history.replaceState(null, "/home")
-      // history is an object of the DOM. replaceState is a function
-      // that modifies the current history instead of creating a new one
+    if (!err) {
+      window.location = "https://secure.meetup.com/oauth2/authorize?client_id=m9n6s9vum5tk0u5is15e0rjau0&response_type=token&redirect_uri=http://localhost:3000/home";
+    } else {
+      console.log(err);
+    }
   }
 
   render() {
-    console.log(this.props)
-
     return (
       <button className="loginBtn" onClick={this.handleClick}>Sign in with Github</button>
     );
   }
+}
+
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default Login;
