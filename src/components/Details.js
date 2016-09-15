@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import CommentBox from './CommentBox'
 import Directions from './Directions'
-import SimpleMap from './simpleMap.js'
 import moment from 'moment'
 
 class Details extends Component {
