@@ -14,7 +14,8 @@ class Details extends Component {
          <p>{this.props.clickedMeetup.venue.city}</p>
          <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
         <CommentBox />
-        <Directions />
+        <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+
       </div>
 
     );
