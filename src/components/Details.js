@@ -15,7 +15,7 @@ class Details extends Component {
          <p>{this.props.clickedMeetup.venue.city}</p>
          <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
         <CommentBox />
-        <SimpleMap />
+        <Directions />
       </div>
 
     );
