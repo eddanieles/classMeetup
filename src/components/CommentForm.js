@@ -14,7 +14,7 @@ class CommentForm extends Component {
   render() {
     return(
       <form className="CommentForm" onSubmit={this.handleSubmit.bind(this)}>
-        <input placeholder="name:" ref={(input) => this.author = input}/>
+        <input value={localStorage.user}/>
         <input type="text" className="form-control" placeholder="Comment:" ref={(input) => this.body = input}/>
         <button type="submit" className="btn btn-primary">Comment</button>
       </form>
