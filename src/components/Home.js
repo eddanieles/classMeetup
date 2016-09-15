@@ -18,7 +18,11 @@ class Home extends Component {
   }
 
   render() {
-    let eventListings = this.state.listings.map(listing => <Event key={listing.id} info={listing}/>);
+    let eventListings = this.state.listings.map(listing => (
+      <Event
+        key={listing.id}
+        info={listing}
+        handleClick={this.props.handleClick}/>));
     return (
       <div>
         <h1>This is the home page</h1>
