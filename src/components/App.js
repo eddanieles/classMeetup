@@ -10,8 +10,16 @@ class App extends Component {
     }
     this.setUser = this.setUser.bind(this);
   }
+
   setUser(userFromLogin){
+    console.log(this);
+    console.log("from login setUser() ", userFromLogin);
     this.setState({currentUser: userFromLogin})
+    if (localStorage.user) {
+      return
+    } else {
+      localStorage.setItem('user', userFromLogin);
+    }
   }
   render() {
     return (

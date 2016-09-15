@@ -34,6 +34,7 @@ class Login extends Component {
         ])
       })
 
+      //this.props.history.replaceState(null, "/home");
       window.location = "http://localhost:3000/home";
       //window.location = "https://secure.meetup.com/oauth2/authorize?client_id=m9n6s9vum5tk0u5is15e0rjau0&response_type=token&redirect_uri=http://localhost:3000/home";
     } else {
