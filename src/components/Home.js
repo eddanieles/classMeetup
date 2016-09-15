@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Event from './Event'
-import base from '../config/base'
 import makeAuthenticatedRequest from '../config/api'
 
 class Home extends Component {
