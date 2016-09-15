@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CommentForm from './CommentForm'
 import Comment from './Comment'
-
+import base from '../config/base';
 
 
 class CommentBox extends Component {
@@ -16,20 +16,26 @@ class CommentBox extends Component {
     console.log("BUTTON")
     const comment = {
       id: this.state.comments.length + 1,
-      author,
+      author: localStorage.user,
       body
 
     }
     this.setState({ comments: this.state.comments.concat([comment]) })
   }
-getComments() {
-  console.log("am I here?")
-  return this.state.comments.map((comment) => {
-    return (<Comment author={comment.author} body={comment.body} key={comment.id}/>)
+  getComments() {
+    console.log("am I here?")
+    return this.state.comments.map((comment) => {
+      return (<Comment author={comment.author} body={comment.body} key={comment.id}/>)
 
-  })
-}
-
+    })
+  }
+  componentDidMount(){
+    this.rebaseRef = base.syncState('comments', {
+      context: this,
+      state: 'comments',
+      asArray: true
+    })
+  }
   render() {
     const meetupComments = this.getComments()
     return (
