@@ -12,7 +12,7 @@ class App extends Component {
               <Link to='/home' className="navbar-brand" href="#">Meetup</Link>
               <ul className="nav navbar-nav">
                   <li className="wishList">
-                      <Link to="/details">previousMeetups</Link>
+                      <Link to="/home/details">previousMeetups</Link>
                   </li>
                   <li className="logout">
                       <Link to="/">Logout</Link>
