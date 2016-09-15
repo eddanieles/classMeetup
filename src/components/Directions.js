@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {initMap, calculateAndDisplayRoute} from '../lib/MapStuff'
+import $ from 'jquery'
 
 class Directions extends Component {
     componentDidMount() {
         initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
-        calculateAndDisplayRoute(this.refs.begin, this.refs.end);
+        calculateAndDisplayRoute("28.5447246 -81.37842429999999", `${this.props.lat} ${this.props.lon}`);
     }
     render() {
         return (

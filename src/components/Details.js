@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import CommentBox from './CommentBox'
 import Directions from './Directions'
-import SimpleMap from './simpleMap.js'
 import moment from 'moment'
 
 class Details extends Component {
@@ -15,7 +14,8 @@ class Details extends Component {
          <p>{this.props.clickedMeetup.venue.city}</p>
          <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
         <CommentBox />
-        <Directions />
+        <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+
       </div>
 
     );
