@@ -13,6 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
+    localStorage.setItem('token', accessToken);
     makeAuthenticatedRequest(accessToken)
     .then(response => this.setState({listings: response.data.results}))
   }

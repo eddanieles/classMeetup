@@ -15,6 +15,7 @@ class HomeContainer extends Component {
     return (
       <div>
         {cloneElement(this.props.children, {
+          currentUser: this.props.currentUser,
           handleClick: this.handleClick,
           clickedMeetup: this.state.clickedMeetup
         })}
