@@ -1,56 +1,59 @@
-import { default as React, Component } from "react";
+import React, {Component} from 'react'
+import {initMap, calculateAndDisplayRoute} from '../lib/MapStuff'
+import $ from 'jquery'
 
-import { GoogleMap, DirectionsRenderer } from "react-google-maps";
-
-/*
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
- */
-export default class Directions extends Component {
-  constructor(){
-    super()
-    this.state = {
-      origin: new google.maps.LatLng(41.8507300, -87.6512600),
-      destination: new google.maps.LatLng(41.8525800, -87.6514100),
-      directions: null,
+class Directions extends Component {
+    componentDidMount() {
+        initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
+        calculateAndDisplayRoute("28.5447246 -81.37842429999999", `${this.props.lat} ${this.props.lon}`);
     }
+    render() {
+        return (
+            <div style={{width:"900px", margin: "auto"}}>
+                <div ref="floatingPanel" style={{
+                    opacity: "0",
+                    position: "absolute",
+                    top: "10px",
+                    left: "25%",
+                    zIndex: "5",
+                    backgroundColor: "#fff",
+                    padding: "5px",
+                    border: "1 px solid #999",
+                    textAlign: "center",
+                    fontFamily: 'Roboto',
+                    lineHeight: "30px",
+                    paddingLeft: "10px",
+                    background: "#fff",
+                    padding: "5px",
+                    fontSize: "14px",
+                    fontFamily: "Arial",
+                    border: "1 px solid #ccc",
+                    boxShadow:" 0 2px 2px rgba(33, 33, 33, 0.4)",
+                    display: "none"
+                }}>
+                    <strong>Start:</strong>
+                    <input type="text" ref="begin" style={{}}/>
+                    <br/>
+                    <strong>End:</strong>
+                    <input type="text" ref="end" style={{}}/>
+                </div>
+                <div ref="rightPanel" style={{
+                    fontFamily: 'Roboto',
+                    lineHeight: "30px",
+                    paddingLeft: "10px",
+                    height: "100%",
+                    float: "right",
+                    width: "390px",
+                    overflow: "auto",
+                }}></div>
+                <div ref="map" style={{
+                    width: "500px",
+                    height: "500px"
+                }}></div>
+            </div>
 
-  }
-
-
-  componentDidMount() {
-    const DirectionsService = new google.maps.DirectionsService();
-
-    DirectionsService.route({
-      origin: this.state.origin,
-      destination: this.state.destination,
-      travelMode: google.maps.TravelMode.DRIVING,
-    }, (result, status) => {
-      if (status === google.maps.DirectionsStatus.OK) {
-        this.setState({
-          directions: result,
-        });
-      } else {
-        console.error(`error fetching directions ${ result }`);
-      }
-    });
-  }
-
-  render() {
-    const { origin, directions } = this.state;
-
-    return (
-      <GoogleMap
-        containerProps={{
-          ...this.props,
-          style: {
-            height: `100%`,
-          },
-        }}
-        defaultZoom={7}
-        defaultCenter={origin}
-      >
-        {directions ? <DirectionsRenderer directions={directions} /> : null}
-      </GoogleMap>
-    );
-  }
+        );
+    }
 }
+
+export default Directions;

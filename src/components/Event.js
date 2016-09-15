@@ -32,7 +32,11 @@ const Event = props => {
       <div style={styles.divs}>
         <h2>{moment(info.time).format('MMMM Do')}</h2>
         <h2 style={styles.eventName}>{info.name}</h2>
-        <h2 style={styles.rsvpCount} onClick={handleClick.bind(this, info)}>{info.yes_rsvp_count} people going</h2>
+        <h2
+          style={styles.rsvpCount}
+          onClick={handleClick.bind(this, info)}>
+          {info.yes_rsvp_count} {info.group.who} going!
+        </h2>
       </div>
     </li>
   )

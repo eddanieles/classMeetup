@@ -1,6 +1,3 @@
-// 28.5447246, -81.37842429999999
-// 28.540000915527344, -81.37000274658203
-
 var directionsDisplay = new google.maps.DirectionsRenderer;
 var directionsService = new google.maps.DirectionsService;
 
@@ -27,8 +24,8 @@ function calculateAndDisplayRoute(startref, endref) {
         var start = startref.value;
         var end = endref.value;
         directionsService.route({
-          origin: "28.5447246 -81.37842429999999",
-          destination: "28.540000915527344 -81.37000274658203",
+          origin: startref,
+          destination: endref,
           travelMode: 'DRIVING'
         }, function(response, status) {
           if (status === 'OK') {

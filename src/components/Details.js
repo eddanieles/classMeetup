@@ -1,62 +1,49 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import CommentBox from './CommentBox'
+import '../config/api.js'
+import moment from 'moment'
+import axios from 'axios';
 import Directions from './Directions'
-import SimpleMap from './SimpleMap.js'
-import {initMap, calculateAndDisplayRoute} from '../lib/MapStuff'
 
 class Details extends Component {
-    componentDidMount() {
-        initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
-        calculateAndDisplayRoute(this.refs.begin, this.refs.end);
+  constructor(){
+    super();
+    this.state = {
+      rsvp: false
     }
-    render() {
-        console.log(this.props.clickedMeetup);
-        return (
-            <div>
-                <CommentBox/>
-                <div ref="floatingPanel" style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "25%",
-                    zIndex: "5",
-                    backgroundColor: "#fff",
-                    padding: "5px",
-                    border: "1 px solid #999",
-                    textAlign: "center",
-                    fontFamily: 'Roboto',
-                    lineHeight: "30px",
-                    paddingLeft: "10px",
-                    background: "#fff",
-                    padding: "5px",
-                    fontSize: "14px",
-                    fontFamily: "Arial",
-                    border: "1 px solid #ccc",
-                    boxShadow:" 0 2px 2px rgba(33, 33, 33, 0.4)",
-                    display: "none"
-                }}>
-                    <strong>Start:</strong>
-                    <input type="text" ref="begin" style={{}}/>
-                    <br/>
-                    <strong>End:</strong>
-                    <input type="text" ref="end" style={{}}/>
-                </div>
-                <div ref="rightPanel" style={{
-                    fontFamily: 'Roboto',
-                    lineHeight: "30px",
-                    paddingLeft: "10px",
-                    height: "100%",
-                    float: "right",
-                    width: "390px",
-                    overflow: "auto",
-                }}></div>
-                <div ref="map" style={{
-                    width: "500px",
-                    height: "500px"
-                }}></div>
-            </div>
+  }
 
-        );
-    }
+  onClickRSVP(event_id, rsvp) {
+     axios.post(`https://api.meetup.com/2/rsvp?event_id=${this.props.clickedMeetup.id}&rsvp=yes&access_token=${localStorage.token}`)
+    .then(function(response) {
+      return response;
+    })
+    this.setState({
+  rsvp: !this.state.rsvp
+})
+  }
+
+  render() {
+
+    let buttonText = "RSVP"
+if (this.state.rsvp) {
+  buttonText = "Change RSVP"
+}
+
+    console.log(this.props.clickedMeetup);
+    return (
+      <div>
+        <h2>{this.props.clickedMeetup.group.name}</h2>
+          <p>{this.props.clickedMeetup.venue.address_1}</p>
+          <p>{this.props.clickedMeetup.venue.city}</p>
+          <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
+          <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
+          <CommentBox />
+                <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+      </div>
+
+    );
+  }
 }
 
 export default Details;
