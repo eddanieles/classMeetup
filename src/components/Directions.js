@@ -9,8 +9,9 @@ class Directions extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{width:"900px", margin: "auto"}}>
                 <div ref="floatingPanel" style={{
+                    opacity: "0",
                     position: "absolute",
                     top: "10px",
                     left: "25%",
