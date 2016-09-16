@@ -5,7 +5,7 @@ class Comment extends Component {
     return (
       <div className="comment">
         {/* <p className="comment-header">{this.props.author}</p> */}
-        <p className="comment-body">{localStorage.user}: {this.props.body}</p>
+        <p className="comment-body">{this.props.author}: {this.props.body}</p>
       </div>
     )
   }
