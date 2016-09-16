@@ -38,7 +38,7 @@ class CommentBox extends Component {
     })
   }
   componentWillUnmount(){
-    base.removeBinding(this.ref);
+    base.removeBinding(this.rebaseRef);
   }
   render() {
     console.log(this.props);
