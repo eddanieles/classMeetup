@@ -27,7 +27,7 @@ function onClickRSVP(event_id, rsvp) {
 }
 
 function getMeetupPeeps(accessToken, eventId) {
-  return axios.get(`https://api.meetup.com/2/rsvps?&sign=true&photo-host=public&event_id=${eventId}&page=20&access_token=${accessToken}`)
+  return axios.get(`https://api.meetup.com/2/rsvps?&sign=true&photo-host=public&rsvp=yes&event_id=${eventId}&page=20&access_token=${accessToken}`)
   .then(response => response.data.results)
 }
 
