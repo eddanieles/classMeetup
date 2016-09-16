@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import CommentBox from './CommentBox'
-import '../config/api.js'
 import moment from 'moment'
 import axios from 'axios';
 import Directions from './Directions'
+import { onClickRSVP } from '../config/api.js'
 
 class Details extends Component {
   constructor(){
@@ -12,17 +12,6 @@ class Details extends Component {
       rsvp: false
     }
   }
-
-  onClickRSVP(event_id, rsvp) {
-     axios.post(`https://api.meetup.com/2/rsvp?event_id=${this.props.clickedMeetup.id}&rsvp=yes&access_token=${localStorage.token}`)
-    .then(function(response) {
-      return response;
-    })
-    this.setState({
-      rsvp: !this.state.rsvp
-    })
-  }
-
 
   render() {
 
@@ -38,7 +27,7 @@ class Details extends Component {
         <p>{this.props.clickedMeetup.venue.address_1}</p>
         <p>{this.props.clickedMeetup.venue.city}</p>
         <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
-        <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
+        <button type="submit" onClick={onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
         <CommentBox meetupId={this.props.clickedMeetup.id}/>
         <Directions endLat={this.props.clickedMeetup.venue.lat} endLon={this.props.clickedMeetup.venue.lon}/>
       </div>
