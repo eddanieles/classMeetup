@@ -8,6 +8,12 @@ body {
   box-sizing: border-box;
 }
 
+.meetups-filter {
+  width: 40%;
+  display: inline-block;
+  margin-top: 100px;
+}
+
 .meetups-filter li{
   cursor: pointer;
 }
@@ -16,13 +22,26 @@ body {
   width: 10%;
 }
 
-/*.navbar {
-  position: fixed;
-  width: 100%;
-}*/
+.events {
+  width: 60%;
+  display: inline-block;
+  margin-top: 100px
+}
+
+.events-container {
+  padding: 0;
+}
+
 
 @media (max-width: 700px) {
   .time-container {
     display: none;
+  }
+  .meetups-filter {
+    display: none;
+  }
+  .events {
+    display: block;
+    width: 100%;
   }
 }
