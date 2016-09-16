@@ -40,7 +40,7 @@ class Details extends Component {
         <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
         <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
         <CommentBox meetupId={this.props.clickedMeetup.id}/>
-        <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+        <Directions endLat={this.props.clickedMeetup.venue.lat} endLon={this.props.clickedMeetup.venue.lon}/>
       </div>
 
     );
