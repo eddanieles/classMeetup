@@ -26,14 +26,6 @@ class Going extends Component {
 
   render () {
     return (
-        <ul className="cohort">
-          {this.state.cohort.map(
-            (mate, index) => <li key={index}>{mate.name}</li>
-          )}
-        </ul>
-
-    console.log(this.state.cohort);
-    return (
       <div>
         <h2>Current Peeps Going</h2>
         <ul className="cohort" style={{listStyleType: "none"}}>

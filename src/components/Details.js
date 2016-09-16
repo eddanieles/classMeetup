@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Going from './Going.js'
 import CommentBox from './CommentBox'
 import moment from 'moment'
 import axios from 'axios';
