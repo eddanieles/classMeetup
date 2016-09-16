@@ -10,20 +10,20 @@ class Directions extends Component {
          beginLon: '-81.37842429999999'
        }
      }
-     componentDidMount() {
-       initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
-       let self = this;
-       navigator.geolocation.getCurrentPosition(function(position) {
-         self.setState({
-           beginLat: position.coords.latitude,
-           beginLon: position.coords.longitude
-         })
-        console.log(position.coords.latitude, position.coords.longitude);
-        console.log(self.state.beginLat, self.state.beginLon);
-        calculateAndDisplayRoute(`${self.state.beginLat} ${self.state.beginLon}`, `${self.props.endLat} ${self.props.endLon}`);
-       });
+   componentDidMount() {
+     initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
+     let self = this;
+     navigator.geolocation.getCurrentPosition(function(position) {
+       self.setState({
+         beginLat: position.coords.latitude,
+         beginLon: position.coords.longitude
+       })
+      console.log(position.coords.latitude, position.coords.longitude);
+      console.log(self.state.beginLat, self.state.beginLon);
+      calculateAndDisplayRoute(`${self.state.beginLat} ${self.state.beginLon}`, `${self.props.endLat} ${self.props.endLon}`);
+     });
 
-     }
+   }
     render() {
         return (
             <div style={{width:"900px", margin: "auto"}}>

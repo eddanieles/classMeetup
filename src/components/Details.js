@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Going from './Going.js'
 import CommentBox from './CommentBox'
 import moment from 'moment'
 import axios from 'axios';
@@ -22,7 +21,6 @@ class Details extends Component {
     if (this.state.rsvp) {
       buttonText = "Change RSVP"
     }
-
     console.log(this.props.clickedMeetup);
     return (
       <div>
