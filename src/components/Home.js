@@ -39,10 +39,10 @@ class Home extends Component {
         handleClick={this.props.handleClick}/>));
     return (
       <div style={{display: "flex"}}>
-        <section style={{width: "60%", display: "inline-block"}}>
+        <section style={{width: "60%", display: "inline-block", marginTop: "100px"}}>
           <ul className="eventsContainer" style={{listStyleType: "none", width: "90%", padding: "0", display: "inline-block"}}>{eventListings}</ul>
         </section>
-        <section className="meetups-filter" style={{width: "40%", display: "inline-block"}}>
+        <section className="meetups-filter" style={{width: "40%", display: "inline-block", marginTop: "100px"}}>
           <ul style={{listStyleType: "none", width: "40%", border: "1px solid rgba(0,0,0,.3)", padding: "0", maxHeight: "200px", display: "inline-block"}}>
             <li onClick={this.handleClick.bind(this, 'all')} style={this.state.selected === 'all' ? {borderLeft: "3px solid blue", color: "blue", fontWeight: "bold"} : null}>All Tech Meetups</li>
             <li onClick={this.handleClick.bind(this, 'rsvp')} style={this.state.selected === 'rsvp' ? {borderLeft: "3px solid blue", color: "blue", fontWeight: "bold"} : null}>My Upcoming Meetups</li>

@@ -16,6 +16,11 @@ body {
   width: 10%;
 }
 
+/*.navbar {
+  position: fixed;
+  width: 100%;
+}*/
+
 @media (max-width: 700px) {
   .time-container {
     display: none;
