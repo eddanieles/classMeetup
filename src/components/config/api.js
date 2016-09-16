@@ -16,10 +16,15 @@ function getPastMeetups(accessToken) {
   .then(response => response.data.filter(meetup => meetup.status === 'past'))
 }
 
-function getMeetupPeeps(accessToken, eventId) {
-  return axios.get(`https://api.meetup.com/2/rsvps?&sign=true&photo-host=public&event_id=${eventId}&page=20&access_token=${accessToken}`)
-  .then(response => response.data.results)
+function onClickRSVP(event_id, rsvp) {
+   axios.post(`https://api.meetup.com/2/rsvp?event_id=${this.props.clickedMeetup.id}&rsvp=yes&access_token=${localStorage.token}`)
+  .then(function(response) {
+    return response;
+  })
+  this.setState({
+    rsvp: !this.state.rsvp
+  })
 }
 
 
-export { getAllTechMeetups, getUpcomingMeetups, getPastMeetups, getMeetupPeeps };
+export { getAllTechMeetups, getUpcomingMeetups, getPastMeetups, onClickRSVP, getMeetupPeeps };
