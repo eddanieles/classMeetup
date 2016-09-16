@@ -1,34 +1,55 @@
 import React, {Component} from 'react'
 import Event from './Event'
 import base from '../config/base'
-import makeAuthenticatedRequest from '../config/api'
+import { getAllTechMeetups, getUpcomingMeetups, getPastMeetups } from '../config/api'
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: []
+      meetups: {
+        all: [],
+        rsvp: [],
+        past: []
+      },
+      selected: 'all'
     }
   }
 
   componentDidMount() {
     let accessToken = this.props.location.hash.split("access_token=")[1].split("&")[0];
-    makeAuthenticatedRequest(accessToken)
-    .then(response => this.setState({listings: response.data.results}))
+    localStorage.setItem('token', accessToken);
+    getAllTechMeetups(accessToken)
+    .then(response => this.setState({meetups: Object.assign(this.state.meetups, {all: response})}));
+    getUpcomingMeetups(accessToken)
+    .then(response => this.setState({meetups: Object.assign(this.state.meetups, {rsvp: response})}));
+    getPastMeetups(accessToken)
+    .then(response => this.setState({meetups: Object.assign(this.state.meetups, {past: response})}));
+  }
+  handleClick(selected) {
+    this.setState({selected});
   }
 
   render() {
-    let eventListings = this.state.listings.map(listing => (
+    let events = this.state.meetups[this.state.selected];
+    let eventListings = events.map(listing => (
       <Event
         key={listing.id}
         info={listing}
         handleClick={this.props.handleClick}/>));
     return (
-      <div>
-        <h1>This is the home page</h1>
-        <ul style={{listStyleType: "none"}}>{eventListings}</ul>
+      <div style={{display: "flex"}}>
+        <section style={{width: "60%", display: "inline-block", marginTop: "100px"}}>
+          <ul className="eventsContainer" style={{listStyleType: "none", width: "90%", padding: "0", display: "inline-block"}}>{eventListings}</ul>
+        </section>
+        <section className="meetups-filter" style={{width: "40%", display: "inline-block", marginTop: "100px"}}>
+          <ul style={{listStyleType: "none", width: "40%", border: "1px solid rgba(0,0,0,.3)", padding: "0", maxHeight: "200px", display: "inline-block"}}>
+            <li onClick={this.handleClick.bind(this, 'all')} style={this.state.selected === 'all' ? {borderLeft: "3px solid blue", color: "blue", fontWeight: "bold"} : null}>All Tech Meetups</li>
+            <li onClick={this.handleClick.bind(this, 'rsvp')} style={this.state.selected === 'rsvp' ? {borderLeft: "3px solid blue", color: "blue", fontWeight: "bold"} : null}>My Upcoming Meetups</li>
+            <li onClick={this.handleClick.bind(this, 'past')} style={this.state.selected === 'past' ? {borderLeft: "3px solid blue", color: "blue", fontWeight: "bold"} : null}>My Previous Meetups</li>
+          </ul>
+        </section>
       </div>
-
     )
   }
 }

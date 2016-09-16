@@ -30,7 +30,7 @@ class CommentBox extends Component {
     })
   }
   componentDidMount(){
-    this.rebaseRef = base.syncState('comments', {
+    this.rebaseRef = base.syncState(`comments/${this.props.meetupId}`, {
       context: this,
       state: 'comments',
       asArray: true
@@ -40,6 +40,7 @@ class CommentBox extends Component {
     base.removeBinding(this.ref);
   }
   render() {
+    console.log(this.props);
     const meetupComments = this.getComments();
     var styles = {
       chatBox: {
