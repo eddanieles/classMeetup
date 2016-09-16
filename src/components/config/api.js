@@ -27,4 +27,4 @@ function onClickRSVP(event_id, rsvp) {
 }
 
 
-export { getAllTechMeetups, getUpcomingMeetups, getPastMeetups, onClickRSVP };
+export { getAllTechMeetups, getUpcomingMeetups, getPastMeetups, onClickRSVP, getMeetupPeeps };

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Going from './Going.js'
 import CommentBox from './CommentBox'
 import moment from 'moment'
 import axios from 'axios';
 import Directions from './Directions'
+import Going from './Going'
 import { onClickRSVP } from '../config/api.js'
+
 
 class Details extends Component {
   constructor(){
@@ -29,6 +32,10 @@ class Details extends Component {
         <button type="submit" onClick={onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
         <CommentBox meetupId={this.props.clickedMeetup.id}/>
         <Directions endLat={this.props.clickedMeetup.venue.lat} endLon={this.props.clickedMeetup.venue.lon}/>
+
+          <div className="going">
+            <Going eventId={this.props.clickedMeetup.id}/>
+          </div>
       </div>
 
     );
