@@ -6,16 +6,15 @@ class CommentForm extends Component {
   handleSubmit(event) {
     console.log("I'm submitting")
     event.preventDefault()
-    let author = this.author
+    let author = localStorage.user
     let body = this.body
     this.props.addComment(author.value, body.value)
   }
 
   render() {
     return(
-      <form className="CommentForm" onSubmit={this.handleSubmit.bind(this)}>
-        <input value={localStorage.user}/>
-        <input type="text" className="form-control" placeholder="Comment:" ref={(input) => this.body = input}/>
+      <form className="CommentForm" onSubmit={this.handleSubmit.bind(this)} style={{display: "flex", justifyContent: "center"}}>
+        <input type="text" className="form-control" placeholder="Comment:" style={{margin: "0 0"}} ref={(input) => this.body = input}/>
         <button type="submit" className="btn btn-primary">Comment</button>
       </form>
     )
