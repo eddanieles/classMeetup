@@ -9,7 +9,7 @@ class Details extends Component {
   constructor(){
     super();
     this.state = {
-      rsvp: false,
+      rsvp: false
     }
   }
 
