@@ -17,7 +17,8 @@ class CommentBox extends Component {
     const comment = {
       id: this.state.comments.length + 1,
       author: localStorage.user,
-      body
+      body,
+      time: Date.now()
 
     }
     this.setState({ comments: this.state.comments.concat([comment]) })
@@ -25,7 +26,7 @@ class CommentBox extends Component {
   getComments() {
     console.log("am I here?")
     return this.state.comments.map((comment) => {
-      return (<Comment author={comment.author} body={comment.body} key={comment.id}/>)
+      return (<Comment author={comment.author} body={comment.body} key={comment.id} time={comment.time}/>)
 
     })
   }
