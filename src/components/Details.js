@@ -9,7 +9,7 @@ class Details extends Component {
   constructor(){
     super();
     this.state = {
-      rsvp: false
+      rsvp: false,
     }
   }
 
@@ -30,7 +30,6 @@ class Details extends Component {
     if (this.state.rsvp) {
       buttonText = "Change RSVP"
     }
-
     console.log(this.props.clickedMeetup);
     return (
       <div>
@@ -39,8 +38,10 @@ class Details extends Component {
         <p>{this.props.clickedMeetup.venue.city}</p>
         <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
         <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
-        <CommentBox />
-        <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+          <CommentBox />
+          <Directions
+            endLat={this.props.clickedMeetup.venue.lat}
+            endLon={this.props.clickedMeetup.venue.lon}/>
       </div>
 
     );
