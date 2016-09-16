@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Going from './Going.js'
 import CommentBox from './CommentBox'
 import SimpleMap from './simpleMap.js'
 import '../config/api.js'
@@ -16,7 +17,11 @@ class Details extends Component {
           <p>{this.props.clickedMeetup.venue.address_1}</p>
           <p>{this.props.clickedMeetup.venue.city}</p>
           <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
-          <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-primary">RSVP</button>
+          <button type="submit" className="btn btn-primary">RSVP</button>
+            <div className="going">
+              <h3>Attending</h3>
+                <Going />
+            </div>
         <CommentBox />
         <SimpleMap />
       </div>
