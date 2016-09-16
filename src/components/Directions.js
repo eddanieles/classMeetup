@@ -3,10 +3,27 @@ import {initMap, calculateAndDisplayRoute} from '../lib/MapStuff'
 import $ from 'jquery'
 
 class Directions extends Component {
-    componentDidMount() {
-        initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
-        calculateAndDisplayRoute("28.5447246 -81.37842429999999", `${this.props.lat} ${this.props.lon}`);
-    }
+  constructor(){
+       super();
+       this.state = {
+         beginLat: '28.5447246',
+         beginLon: '-81.37842429999999'
+       }
+     }
+     componentDidMount() {
+       initMap(this.refs.map, this.refs.rightPanel, this.refs.floatingPanel, this.refs.begin, this.refs.end)
+       let self = this;
+       navigator.geolocation.getCurrentPosition(function(position) {
+         self.setState({
+           beginLat: position.coords.latitude,
+           beginLon: position.coords.longitude
+         })
+        console.log(position.coords.latitude, position.coords.longitude);
+        console.log(self.state.beginLat, self.state.beginLon);
+        calculateAndDisplayRoute(`${self.state.beginLat} ${self.state.beginLon}`, `${self.props.endLat} ${self.props.endLon}`);
+       });
+
+     }
     render() {
         return (
             <div style={{width:"900px", margin: "auto"}}>
