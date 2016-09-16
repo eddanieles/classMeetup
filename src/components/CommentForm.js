@@ -9,6 +9,7 @@ class CommentForm extends Component {
     let author = localStorage.user
     let body = this.body
     this.props.addComment(author.value, body.value)
+    event.target.elements[0].value = '';
   }
 
   render() {
