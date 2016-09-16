@@ -19,27 +19,28 @@ class Details extends Component {
       return response;
     })
     this.setState({
-  rsvp: !this.state.rsvp
-})
+      rsvp: !this.state.rsvp
+    })
   }
+
 
   render() {
 
     let buttonText = "RSVP"
-if (this.state.rsvp) {
-  buttonText = "Change RSVP"
-}
+    if (this.state.rsvp) {
+      buttonText = "Change RSVP"
+    }
 
     console.log(this.props.clickedMeetup);
     return (
       <div>
         <h2>{this.props.clickedMeetup.group.name}</h2>
-          <p>{this.props.clickedMeetup.venue.address_1}</p>
-          <p>{this.props.clickedMeetup.venue.city}</p>
-          <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
-          <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
-          <CommentBox />
-                <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
+        <p>{this.props.clickedMeetup.venue.address_1}</p>
+        <p>{this.props.clickedMeetup.venue.city}</p>
+        <p>{moment(this.props.clickedMeetup.time).format ('MMMM Do')}</p>
+        <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
+        <CommentBox />
+        <Directions lat={this.props.clickedMeetup.venue.lat} lon={this.props.clickedMeetup.venue.lon}/>
       </div>
 
     );
