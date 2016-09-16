@@ -5,6 +5,7 @@ import '../config/api.js'
 import moment from 'moment'
 import axios from 'axios';
 import Directions from './Directions'
+import Going from './Going'
 
 class Details extends Component {
   constructor(){
@@ -42,13 +43,10 @@ class Details extends Component {
         <button type="submit" onClick={this.onClickRSVP.bind(this)} className="btn btn-success">{buttonText}</button>
         <CommentBox meetupId={this.props.clickedMeetup.id}/>
         <Directions endLat={this.props.clickedMeetup.venue.lat} endLon={this.props.clickedMeetup.venue.lon}/>
-        <div className="going">
-          <h3>Attending</h3>
-            <Going />
-        </div>
-        <CommentBox />
-        <SimpleMap />
 
+          <div className="going">
+            <Going eventId={this.props.clickedMeetup.id}/>
+          </div>
       </div>
 
     );
