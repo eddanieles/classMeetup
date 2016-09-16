@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import Event from './Event'
+import makeAuthenticatedRequest from '../config/api'
 import base from '../config/base'
 import { getAllTechMeetups, getUpcomingMeetups, getPastMeetups } from '../config/api'
+
 
 class Home extends Component {
   constructor(props) {
